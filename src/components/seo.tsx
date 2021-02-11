@@ -6,18 +6,17 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 interface SEOProps {
-  description?: string,
-  lang?: string,
-  meta?: Array<{name: string, content: string}>,
+  description?: string
+  lang?: string
+  meta?: Array<{ name: string; content: string }>
   title: string
 }
 
-function SEO({ description='', lang='en', meta=[], title }: SEOProps) {
+function SEO({ description = "", lang = "en", meta = [], title }: SEOProps) {
   const { site }: any = useStaticQuery(
     graphql`
       query {
@@ -40,8 +39,7 @@ function SEO({ description='', lang='en', meta=[], title }: SEOProps) {
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={title === "" ? defaultTitle : title}
       meta={[
         {
           name: `description`,
